@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ziyoujiayuan.happygarden</groupId>
+    <artifactId>happy-garden</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>happy-garden-platform</module>
+    </modules>
+
+    <parent>
+        <groupId>com.hbxhx.pom</groupId>
+        <artifactId>hbxhx-pom</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <runtime.base.version>1.1.0</runtime.base.version>
+        <runtime.core.version>1.1.0</runtime.core.version>
+        <runtime.mybatis.version>1.1.0</runtime.mybatis.version>
+        <runtime.oss.version>1.1.0</runtime.oss.version>
+        <runtime.redis.version>1.1.0</runtime.redis.version>
+        <runtime.web.version>1.1.0</runtime.web.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.hbxhx.utils</groupId>
+                <artifactId>hbxhx-utils</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hbxhx.runtime.base</groupId>
+                <artifactId>hbxhx-runtime-base</artifactId>
+                <version>${runtime.base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hbxhx.runtime.core</groupId>
+                <artifactId>hbxhx-runtime-core</artifactId>
+                <version>${runtime.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hbxhx.runtime.mybatis</groupId>
+                <artifactId>hbxhx-runtime-mybatis</artifactId>
+                <version>${runtime.mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hbxhx.runtime.oss</groupId>
+                <artifactId>hbxhx-runtime-oss</artifactId>
+                <version>${runtime.oss.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hbxhx.runtime.redis</groupId>
+                <artifactId>hbxhx-runtime-redis</artifactId>
+                <version>${runtime.redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hbxhx.runtime.web</groupId>
+                <artifactId>hbxhx-runtime-web</artifactId>
+                <version>${runtime.web.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+</project>

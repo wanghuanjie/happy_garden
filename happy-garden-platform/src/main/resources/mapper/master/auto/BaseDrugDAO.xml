@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyoujiayuan.happygarden.dao.auto.BaseDrugDAO">
+  <resultMap id="BaseResultMap" type="com.ziyoujiayuan.happygarden.entity.auto.BaseDrugPO">
+    <id column="base_drug_id" jdbcType="VARCHAR" property="baseDrugId" />
+    <result column="base_drug_name" jdbcType="VARCHAR" property="baseDrugName" />
+    <result column="base_drug_recipe" jdbcType="VARCHAR" property="baseDrugRecipe" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="is_recommend" jdbcType="TINYINT" property="isRecommend" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="regenerator" jdbcType="VARCHAR" property="regenerator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="is_del" jdbcType="TINYINT" property="isDel" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    base_drug_id, base_drug_name, base_drug_recipe, unit, is_recommend, update_time, 
+    regenerator, create_time, creator, is_del
+  </sql>
+  <select id="selectByExample" parameterType="com.ziyoujiayuan.happygarden.entity.auto.BaseDrugPOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_base_drug
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+    <if test="forUpdate != null and forUpdate == true">
+      for update
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_drug
+    where base_drug_id = #{baseDrugId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_base_drug
+    where base_drug_id = #{baseDrugId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ziyoujiayuan.happygarden.entity.auto.BaseDrugPOExample">
+    delete from t_base_drug
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ziyoujiayuan.happygarden.entity.auto.BaseDrugPO">
+    insert into t_base_drug (base_drug_id, base_drug_name, base_drug_recipe, 
+      unit, is_recommend, update_time, 
+      regenerator, create_time, creator, 
+      is_del)
+    values (#{baseDrugId,jdbcType=VARCHAR}, #{baseDrugName,jdbcType=VARCHAR}, #{baseDrugRecipe,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{isRecommend,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{regenerator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{isDel,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ziyoujiayuan.happygarden.entity.auto.BaseDrugPO">
+    insert into t_base_drug
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="baseDrugId != null">
+        base_drug_id,
+      </if>
+      <if test="baseDrugName != null">
+        base_drug_name,
+      </if>
+      <if test="baseDrugRecipe != null">
+        base_drug_recipe,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="isRecommend != null">
+        is_recommend,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="regenerator != null">
+        regenerator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="baseDrugId != null">
+        #{baseDrugId,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDrugName != null">
+        #{baseDrugName,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDrugRecipe != null">
+        #{baseDrugRecipe,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null">
+        #{isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regenerator != null">
+        #{regenerator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ziyoujiayuan.happygarden.entity.auto.BaseDrugPOExample" resultType="java.lang.Long">
+    select count(*) from t_base_drug
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_base_drug
+    <set>
+      <if test="record.baseDrugId != null">
+        base_drug_id = #{record.baseDrugId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baseDrugName != null">
+        base_drug_name = #{record.baseDrugName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baseDrugRecipe != null">
+        base_drug_recipe = #{record.baseDrugRecipe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null">
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRecommend != null">
+        is_recommend = #{record.isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regenerator != null">
+        regenerator = #{record.regenerator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_base_drug
+    set base_drug_id = #{record.baseDrugId,jdbcType=VARCHAR},
+      base_drug_name = #{record.baseDrugName,jdbcType=VARCHAR},
+      base_drug_recipe = #{record.baseDrugRecipe,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      is_recommend = #{record.isRecommend,jdbcType=TINYINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      regenerator = #{record.regenerator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ziyoujiayuan.happygarden.entity.auto.BaseDrugPO">
+    update t_base_drug
+    <set>
+      <if test="baseDrugName != null">
+        base_drug_name = #{baseDrugName,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDrugRecipe != null">
+        base_drug_recipe = #{baseDrugRecipe,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null">
+        is_recommend = #{isRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regenerator != null">
+        regenerator = #{regenerator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+    </set>
+    where base_drug_id = #{baseDrugId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ziyoujiayuan.happygarden.entity.auto.BaseDrugPO">
+    update t_base_drug
+    set base_drug_name = #{baseDrugName,jdbcType=VARCHAR},
+      base_drug_recipe = #{baseDrugRecipe,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      is_recommend = #{isRecommend,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      regenerator = #{regenerator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=TINYINT}
+    where base_drug_id = #{baseDrugId,jdbcType=VARCHAR}
+  </update>
+</mapper>

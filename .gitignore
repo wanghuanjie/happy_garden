@@ -1,0 +1,16 @@
+*.class
+*.log
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.jar
+.DS_Store
+.idea_modules/
+*.iml
+.idea/*
+.idea/
+
+happy-garden-platform/target/
+
+happy-garden-platform/src/test/
