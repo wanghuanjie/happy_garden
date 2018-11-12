@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyoujiayuan.happygarden.dao.auto.RemindRecordDAO">
+  <resultMap id="BaseResultMap" type="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO">
+    <id column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="mode" jdbcType="VARCHAR" property="mode" />
+    <result column="unit" jdbcType="TINYINT" property="unit" />
+    <result column="orgin_time" jdbcType="TIMESTAMP" property="orginTime" />
+    <result column="next_time" jdbcType="TIMESTAMP" property="nextTime" />
+    <result column="entity_id" jdbcType="VARCHAR" property="entityId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="regenerator" jdbcType="VARCHAR" property="regenerator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="is_del" jdbcType="TINYINT" property="isDel" />
+    <result column="email_notify_cnt" jdbcType="TINYINT" property="emailNotifyCnt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    record_id, `type`, `mode`, unit, orgin_time, next_time, entity_id, remark, `status`, 
+    update_time, regenerator, create_time, creator, is_del, email_notify_cnt
+  </sql>
+  <select id="selectByExample" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_remind_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+    <if test="forUpdate != null and forUpdate == true">
+      for update
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_remind_record
+    where record_id = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_remind_record
+    where record_id = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPOExample">
+    delete from t_remind_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO">
+    insert into t_remind_record (record_id, `type`, `mode`, 
+      unit, orgin_time, next_time, 
+      entity_id, remark, `status`, 
+      update_time, regenerator, create_time, 
+      creator, is_del, email_notify_cnt
+      )
+    values (#{recordId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{mode,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=TINYINT}, #{orginTime,jdbcType=TIMESTAMP}, #{nextTime,jdbcType=TIMESTAMP}, 
+      #{entityId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{regenerator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{isDel,jdbcType=TINYINT}, #{emailNotifyCnt,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO">
+    insert into t_remind_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="mode != null">
+        `mode`,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="orginTime != null">
+        orgin_time,
+      </if>
+      <if test="nextTime != null">
+        next_time,
+      </if>
+      <if test="entityId != null">
+        entity_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="regenerator != null">
+        regenerator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="emailNotifyCnt != null">
+        email_notify_cnt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="mode != null">
+        #{mode,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=TINYINT},
+      </if>
+      <if test="orginTime != null">
+        #{orginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextTime != null">
+        #{nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entityId != null">
+        #{entityId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regenerator != null">
+        #{regenerator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="emailNotifyCnt != null">
+        #{emailNotifyCnt,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPOExample" resultType="java.lang.Long">
+    select count(*) from t_remind_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_remind_record
+    <set>
+      <if test="record.recordId != null">
+        record_id = #{record.recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mode != null">
+        `mode` = #{record.mode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null">
+        unit = #{record.unit,jdbcType=TINYINT},
+      </if>
+      <if test="record.orginTime != null">
+        orgin_time = #{record.orginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.nextTime != null">
+        next_time = #{record.nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.entityId != null">
+        entity_id = #{record.entityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regenerator != null">
+        regenerator = #{record.regenerator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=TINYINT},
+      </if>
+      <if test="record.emailNotifyCnt != null">
+        email_notify_cnt = #{record.emailNotifyCnt,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_remind_record
+    set record_id = #{record.recordId,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=VARCHAR},
+      `mode` = #{record.mode,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=TINYINT},
+      orgin_time = #{record.orginTime,jdbcType=TIMESTAMP},
+      next_time = #{record.nextTime,jdbcType=TIMESTAMP},
+      entity_id = #{record.entityId,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=TINYINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      regenerator = #{record.regenerator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      is_del = #{record.isDel,jdbcType=TINYINT},
+      email_notify_cnt = #{record.emailNotifyCnt,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO">
+    update t_remind_record
+    <set>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="mode != null">
+        `mode` = #{mode,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=TINYINT},
+      </if>
+      <if test="orginTime != null">
+        orgin_time = #{orginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextTime != null">
+        next_time = #{nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entityId != null">
+        entity_id = #{entityId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regenerator != null">
+        regenerator = #{regenerator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="emailNotifyCnt != null">
+        email_notify_cnt = #{emailNotifyCnt,jdbcType=TINYINT},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO">
+    update t_remind_record
+    set `type` = #{type,jdbcType=VARCHAR},
+      `mode` = #{mode,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=TINYINT},
+      orgin_time = #{orginTime,jdbcType=TIMESTAMP},
+      next_time = #{nextTime,jdbcType=TIMESTAMP},
+      entity_id = #{entityId,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      regenerator = #{regenerator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=TINYINT},
+      email_notify_cnt = #{emailNotifyCnt,jdbcType=TINYINT}
+    where record_id = #{recordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

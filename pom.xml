@@ -16,7 +16,7 @@
     <parent>
         <groupId>com.hbxhx.pom</groupId>
         <artifactId>hbxhx-pom</artifactId>
-        <version>1.0.0</version>
+        <version>1.2.0</version>
     </parent>
 
     <properties>
@@ -31,6 +31,7 @@
         <runtime.oss.version>1.1.0</runtime.oss.version>
         <runtime.redis.version>1.1.0</runtime.redis.version>
         <runtime.web.version>1.1.0</runtime.web.version>
+        <runtime.notify.version>1.1.0</runtime.notify.version>
     </properties>
 
     <dependencyManagement>
@@ -69,6 +70,11 @@
                 <groupId>com.hbxhx.runtime.web</groupId>
                 <artifactId>hbxhx-runtime-web</artifactId>
                 <version>${runtime.web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hbxhx.runtime.notify</groupId>
+                <artifactId>hbxhx-runtime-notify</artifactId>
+                <version>${runtime.notify.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

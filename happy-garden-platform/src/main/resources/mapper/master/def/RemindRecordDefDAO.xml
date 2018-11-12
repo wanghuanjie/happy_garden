@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyoujiayuan.happygarden.dao.def.RemindRecordDefDAO">
+
+  <select id="listByCondition" parameterType="com.ziyoujiayuan.happygarden.param.RemindQueryParam" resultType="com.ziyoujiayuan.happygarden.entity.def.RemindRecordDefPO">
+     SELECT *
+       FROM t_remind_record t
+      WHERE t.is_del = 0
+      <if test="remark != null">
+        AND t.remark LIKE concat('%',#{remark},'%')
+      </if>
+      <if test="status != null">
+        AND t.status = #{status}
+      </if>
+  </select>
+
+</mapper>
