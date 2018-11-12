@@ -271,9 +271,9 @@ public class RemindSchedule extends BaseSchedule{
 
             NotifyMeta notifyMeta = new NotifyMeta();
             notifyMeta.setHost("smtp.mxhichina.com");
-            notifyMeta.setPort(25);
-            notifyMeta.setAuth(false);
-            notifyMeta.setIsSsl(false);
+            notifyMeta.setPort(465);
+            notifyMeta.setAuth(true);
+            notifyMeta.setIsSsl(true);
             notifyMeta.setUsername("wanghuanjie@jxiaolan.com");
             notifyMeta.setPassword("Jxl625660.");
 
