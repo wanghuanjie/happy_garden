@@ -10,7 +10,13 @@ import lombok.Data;
 @Data
 public class RemindQueryParam extends AjaxTableParam{
 
+    private String type;
+
+    private String entityId;
+
     private Integer status;
 
     private String remark;
+
+    private String creator;
 }

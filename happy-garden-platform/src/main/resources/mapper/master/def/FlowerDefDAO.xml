@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyoujiayuan.happygarden.dao.def.FlowerDefDAO">
+
+  <select id="listByCondition" parameterType="com.ziyoujiayuan.happygarden.param.FlowerQueryParam" resultType="com.ziyoujiayuan.happygarden.entity.def.FlowerDefPO">
+     SELECT *
+       FROM t_flower t
+      WHERE t.is_del = 0
+      <if test="creator != null">
+        AND t.creator = #{creator}
+      </if>
+  </select>
+
+  <select id="listPubByCondition" parameterType="com.ziyoujiayuan.happygarden.param.FlowerQueryParam" resultType="com.ziyoujiayuan.happygarden.result.PubSelResult">
+    SELECT t.flower_id               AS                id,
+           t.nick_name               AS                name
+      FROM t_flower t
+     WHERE t.is_del = 0
+    <if test="creator != null">
+        AND t.creator = #{creator}
+    </if>
+  </select>
+
+</mapper>

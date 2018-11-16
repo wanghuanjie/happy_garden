@@ -1,6 +1,7 @@
 package com.ziyoujiayuan.happygarden.service;
 
 import com.github.pagehelper.PageInfo;
+import com.ziyoujiayuan.happygarden.entity.auto.AccountPO;
 import com.ziyoujiayuan.happygarden.param.AccountQueryParam;
 import com.ziyoujiayuan.happygarden.param.AccountSaveParam;
 import com.ziyoujiayuan.happygarden.result.PubSelResult;
@@ -43,4 +44,12 @@ public interface AccountService {
      * @return
      */
     List<PubSelResult> pubsel();
+
+    /**
+     * 获取AccountPo
+     *
+     * @param mobile
+     * @return
+     */
+    AccountPO getDetails(String mobile);
 }

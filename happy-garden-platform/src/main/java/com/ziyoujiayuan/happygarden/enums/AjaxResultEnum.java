@@ -1,14 +1,15 @@
 package com.ziyoujiayuan.happygarden.enums;
 
-import lombok.Data;
-
 /**
  * @author wanghjbuf
  * @date 2018/11/6
  */
 public enum AjaxResultEnum {
 
-    SUCCESS("100000", "success");
+    SUCCESS("100000", "success"),
+    LOGIN_ERROR("100001", "login_error"),
+    LOGOUT_ERROR("100002", "logout_error"),
+    ERROR("111111", "system_error");
 
     private String code;
     private String message;

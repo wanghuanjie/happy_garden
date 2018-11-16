@@ -32,5 +32,13 @@ public interface FlowerService {
      * @param flowerId
      * @return
      */
-    String del(String flowerId);
+    void del(String flowerId);
+
+    /**
+     * 查询publist
+     *
+     * @param flowerQueryParam
+     * @return
+     */
+    PageInfo queryPub(FlowerQueryParam flowerQueryParam);
 }

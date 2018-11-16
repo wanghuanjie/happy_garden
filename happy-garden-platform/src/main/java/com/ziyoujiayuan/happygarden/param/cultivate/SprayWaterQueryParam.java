@@ -9,4 +9,8 @@ import lombok.Data;
  */
 @Data
 public class SprayWaterQueryParam extends AjaxTableParam{
+
+    private String flowerId;
+
+    private String creator;
 }

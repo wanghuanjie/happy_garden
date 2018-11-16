@@ -25,6 +25,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 植物培育提醒
+ *
  * @author wanghjbuf
  * @date 2018/11/10
  */
@@ -194,33 +196,6 @@ public class RemindSchedule extends BaseSchedule{
     }
 
     /**
-     * 计算next
-     *
-     * @param originTime
-     * @param unit
-     * @return
-     */
-    private Date doCalculateNext(Date originTime, Integer unit) {
-        Date result = null;
-        switch (RemindUnitEnum.getEnumByCode(unit)) {
-            case AT:
-                result = originTime;
-                break;
-            case YEAR:
-                result = DateUtils.addOneYear(originTime);
-                break;
-            case MONTH:
-                result = DateUtils.addOneMonth(originTime);
-                break;
-            case DAY:
-                result = DateUtils.addOneDay(originTime);
-                break;
-            default:
-        }
-        return result;
-    }
-
-    /**
      * 更新Next时间
      *
      * @param remindRecordDefPO
@@ -230,7 +205,7 @@ public class RemindSchedule extends BaseSchedule{
         Date currentNextTime = remindRecordDefPO.getNextTime();
         if (currentTime.after(currentNextTime)) {
             Integer unit = new Integer(remindRecordDefPO.getUnit());
-            Date nextTime = doCalculateNext(currentNextTime, unit);
+            Date nextTime = remindService.doCalculateNext(currentNextTime, unit);
 
             RemindRecordPO remindRecordPO = new RemindRecordPO();
             BeanUtils.copyProperties(remindRecordDefPO, remindRecordPO);

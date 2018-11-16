@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyoujiayuan.happygarden.dao.def.ReplaceSoilRecordDefDAO">
+
+  <select id="listByCondition" parameterType="com.ziyoujiayuan.happygarden.param.cultivate.ReplaceSoilQueryParam" resultType="com.ziyoujiayuan.happygarden.entity.def.ReplaceSoilRecordDefPO">
+     SELECT *
+       FROM t_replace_soil_record t
+      WHERE t.is_del = 0
+      <if test="flowerId != null">
+          AND t.flower_id = #{flowerId}
+      </if>
+      <if test="creator != null">
+        AND t.creator = #{creator}
+      </if>
+  </select>
+
+</mapper>

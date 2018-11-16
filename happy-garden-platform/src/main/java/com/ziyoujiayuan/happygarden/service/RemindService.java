@@ -6,6 +6,8 @@ import com.ziyoujiayuan.happygarden.param.FlowerSaveParam;
 import com.ziyoujiayuan.happygarden.param.RemindQueryParam;
 import com.ziyoujiayuan.happygarden.param.RemindSaveParam;
 
+import java.util.Date;
+
 /**
  * @author wanghjbuf
  * @date 2018/11/6
@@ -34,5 +36,14 @@ public interface RemindService {
      * @param recordId
      * @return
      */
-    String del(String recordId);
+    void del(String recordId);
+
+    /**
+     * 计算next
+     *
+     * @param originTime
+     * @param unit
+     * @return
+     */
+    Date doCalculateNext(Date originTime, Integer unit);
 }

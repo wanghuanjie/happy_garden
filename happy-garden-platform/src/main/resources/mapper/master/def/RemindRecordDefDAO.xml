@@ -6,11 +6,20 @@
      SELECT *
        FROM t_remind_record t
       WHERE t.is_del = 0
+      <if test="type != null">
+        AND t.type = #{type}
+      </if>
+      <if test="entityId != null">
+          AND t.entity_id = #{entityId}
+      </if>
       <if test="remark != null">
         AND t.remark LIKE concat('%',#{remark},'%')
       </if>
       <if test="status != null">
         AND t.status = #{status}
+      </if>
+      <if test="creator != null">
+        AND t.creator = #{creator}
       </if>
   </select>
 

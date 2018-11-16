@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyoujiayuan.happygarden.dao.def.HallDefDAO">
+
+  <select id="listByCondition" parameterType="com.ziyoujiayuan.happygarden.param.HallQueryParam" resultType="com.ziyoujiayuan.happygarden.entity.def.BaseFlowerDefPO">
+     SELECT *
+       FROM t_base_flower t
+      WHERE t.is_del = 0
+  </select>
+
+</mapper>

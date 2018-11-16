@@ -6,6 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * t_remind_record
+ *
+ * @author wanghjbuf
+ */
 @Repository
 public interface RemindRecordDefDAO {
 

@@ -9,4 +9,8 @@ import lombok.Data;
  */
 @Data
 public class ApplyFertilizerQueryParam extends AjaxTableParam{
+
+    private String flowerId;
+
+    private String creator;
 }

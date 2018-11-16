@@ -9,4 +9,8 @@ import lombok.Data;
  */
 @Data
 public class ReplaceSoilQueryParam extends AjaxTableParam{
+
+    private String flowerId;
+
+    private String creator;
 }

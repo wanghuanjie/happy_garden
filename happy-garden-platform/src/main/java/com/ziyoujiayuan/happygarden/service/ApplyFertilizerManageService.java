@@ -2,6 +2,7 @@ package com.ziyoujiayuan.happygarden.service;
 
 import com.github.pagehelper.PageInfo;
 import com.ziyoujiayuan.happygarden.param.cultivate.ApplyFertilizerQueryParam;
+import com.ziyoujiayuan.happygarden.param.cultivate.ApplyFertilizerSaveParam;
 
 /**
  * @author wanghjbuf
@@ -18,11 +19,12 @@ public interface ApplyFertilizerManageService {
     PageInfo query(ApplyFertilizerQueryParam applyFertilizerQueryParam);
 
     /**
-     * 保存
+     *  保存
      *
+     * @param applyFertilizerSaveParam
      * @return
      */
-    String save();
+    String save(ApplyFertilizerSaveParam applyFertilizerSaveParam);
 
     /**
      * 删除
@@ -30,5 +32,5 @@ public interface ApplyFertilizerManageService {
      * @param recordId
      * @return
      */
-    String del(String recordId);
+    void del(String recordId);
 }

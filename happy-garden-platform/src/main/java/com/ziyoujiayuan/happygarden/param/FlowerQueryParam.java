@@ -9,4 +9,6 @@ import lombok.Data;
  */
 @Data
 public class FlowerQueryParam extends AjaxTableParam{
+
+    private String creator;
 }
