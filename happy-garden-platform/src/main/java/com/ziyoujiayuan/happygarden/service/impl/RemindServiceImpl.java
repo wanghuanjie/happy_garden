@@ -9,7 +9,8 @@ import com.ziyoujiayuan.happygarden.dao.auto.RemindRecordDAO;
 import com.ziyoujiayuan.happygarden.dao.def.RemindRecordDefDAO;
 import com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO;
 import com.ziyoujiayuan.happygarden.entity.def.RemindRecordDefPO;
-import com.ziyoujiayuan.happygarden.enums.RemindUnitEnum;
+import com.ziyoujiayuan.happygarden.enums.RemindModeEnum;
+import com.ziyoujiayuan.happygarden.enums.RemindStatusEnum;
 import com.ziyoujiayuan.happygarden.param.RemindQueryParam;
 import com.ziyoujiayuan.happygarden.param.RemindSaveParam;
 import com.ziyoujiayuan.happygarden.service.RemindService;
@@ -49,7 +50,8 @@ public class RemindServiceImpl extends BaseService implements RemindService{
         RemindRecordPO remindRecordPO = new RemindRecordPO();
         BeanUtils.copyProperties(remindSaveParam, remindRecordPO);
 
-        remindRecordPO.setNextTime(doCalculateNext(remindSaveParam.getNextTime(), remindSaveParam.getUnit()));
+        remindRecordPO.setStatus(tinyIntToByte(RemindStatusEnum.ENABLE.getCode()));
+        remindRecordPO.setNextTime(doCalculateNext(remindSaveParam.getNextTime(), remindSaveParam.getMode(), remindSaveParam.getUnit()));
         remindRecordPO.setRecordId(recordId);
         remindRecordPO.setCreateTime(new Date());
         remindRecordPO.setUpdateTime(new Date());
@@ -65,20 +67,20 @@ public class RemindServiceImpl extends BaseService implements RemindService{
     }
 
     @Override
-    public Date doCalculateNext(Date originTime, Integer unit) {
+    public Date doCalculateNext(Date originTime, Integer mode, Integer unit) {
         Date result = null;
-        switch (RemindUnitEnum.getEnumByCode(unit)) {
+        switch (RemindModeEnum.getEnumByCode(mode)) {
             case AT:
                 result = originTime;
                 break;
             case YEAR:
-                result = DateUtils.addOneYear(originTime);
+                result = DateUtils.addYear(originTime, unit);
                 break;
             case MONTH:
-                result = DateUtils.addOneMonth(originTime);
+                result = DateUtils.addMonth(originTime, unit);
                 break;
             case DAY:
-                result = DateUtils.addOneDay(originTime);
+                result = DateUtils.addDay(originTime, unit);
                 break;
             default:
         }

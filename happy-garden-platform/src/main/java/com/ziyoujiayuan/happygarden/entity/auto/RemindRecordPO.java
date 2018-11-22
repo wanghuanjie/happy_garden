@@ -19,19 +19,19 @@ public class RemindRecordPO extends BasePO {
     private String type;
 
     /**
-     * 模式-cron,at
+     * 模式-0:at,1:年,2:月,3:日
      */
-    private String mode;
+    private Byte mode;
 
     /**
-     * 单位-0:at,1:年,2:月,3:日
+     * 单位
      */
     private Byte unit;
 
     /**
      * 原始时间
      */
-    private Date orginTime;
+    private Date originTime;
 
     /**
      * next
@@ -99,12 +99,12 @@ public class RemindRecordPO extends BasePO {
         this.type = type == null ? null : type.trim();
     }
 
-    public String getMode() {
+    public Byte getMode() {
         return mode;
     }
 
-    public void setMode(String mode) {
-        this.mode = mode == null ? null : mode.trim();
+    public void setMode(Byte mode) {
+        this.mode = mode;
     }
 
     public Byte getUnit() {
@@ -115,12 +115,12 @@ public class RemindRecordPO extends BasePO {
         this.unit = unit;
     }
 
-    public Date getOrginTime() {
-        return orginTime;
+    public Date getOriginTime() {
+        return originTime;
     }
 
-    public void setOrginTime(Date orginTime) {
-        this.orginTime = orginTime;
+    public void setOriginTime(Date originTime) {
+        this.originTime = originTime;
     }
 
     public Date getNextTime() {
@@ -219,7 +219,7 @@ public class RemindRecordPO extends BasePO {
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getMode() == null ? other.getMode() == null : this.getMode().equals(other.getMode()))
             && (this.getUnit() == null ? other.getUnit() == null : this.getUnit().equals(other.getUnit()))
-            && (this.getOrginTime() == null ? other.getOrginTime() == null : this.getOrginTime().equals(other.getOrginTime()))
+            && (this.getOriginTime() == null ? other.getOriginTime() == null : this.getOriginTime().equals(other.getOriginTime()))
             && (this.getNextTime() == null ? other.getNextTime() == null : this.getNextTime().equals(other.getNextTime()))
             && (this.getEntityId() == null ? other.getEntityId() == null : this.getEntityId().equals(other.getEntityId()))
             && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()))
@@ -240,7 +240,7 @@ public class RemindRecordPO extends BasePO {
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getMode() == null) ? 0 : getMode().hashCode());
         result = prime * result + ((getUnit() == null) ? 0 : getUnit().hashCode());
-        result = prime * result + ((getOrginTime() == null) ? 0 : getOrginTime().hashCode());
+        result = prime * result + ((getOriginTime() == null) ? 0 : getOriginTime().hashCode());
         result = prime * result + ((getNextTime() == null) ? 0 : getNextTime().hashCode());
         result = prime * result + ((getEntityId() == null) ? 0 : getEntityId().hashCode());
         result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
@@ -264,7 +264,7 @@ public class RemindRecordPO extends BasePO {
         sb.append(", type=").append(type);
         sb.append(", mode=").append(mode);
         sb.append(", unit=").append(unit);
-        sb.append(", orginTime=").append(orginTime);
+        sb.append(", originTime=").append(originTime);
         sb.append(", nextTime=").append(nextTime);
         sb.append(", entityId=").append(entityId);
         sb.append(", remark=").append(remark);

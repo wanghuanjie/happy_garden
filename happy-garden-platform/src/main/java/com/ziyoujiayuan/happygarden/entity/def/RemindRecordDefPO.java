@@ -22,19 +22,19 @@ public class RemindRecordDefPO extends BasePO {
     private String type;
 
     /**
-     * 模式-cron,at
+     * 模式-0:at,1:年,2:月,3:日
      */
-    private String mode;
+    private Byte mode;
 
     /**
-     * 单位-0:at,1:年,2:月,3:日
+     * 单位
      */
     private Byte unit;
 
     /**
      * 原始时间
      */
-    private Date orginTime;
+    private Date originTime;
 
     /**
      * next

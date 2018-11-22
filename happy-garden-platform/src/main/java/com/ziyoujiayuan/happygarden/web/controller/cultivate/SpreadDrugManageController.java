@@ -21,7 +21,7 @@ import javax.annotation.Resource;
  * @date 2018/11/6
  */
 @Controller
-@RequestMapping(value = "/sprayDrugManage")
+@RequestMapping(value = "/spreadDrugManage")
 public class SpreadDrugManageController extends BaseController {
 
     @Resource

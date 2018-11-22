@@ -3,12 +3,6 @@
     <jmxConfigurator/>
     <springProperty scope="context" name="logLevel" source="log.level" />
     <springProperty scope="context" name="logPath" source="log.energy.user.path" />
-    <springProperty scope="context" name="aliyuncsMoniter" source="aliyuncs.moniter" />
-
-    <jmxConfigurator/>
-    <springProperty scope="context" name="logLevel" source="log.level"/>
-    <springProperty scope="context" name="logPath" source="log.hbxhx.dev.path"/>
-    <springProperty scope="context" name="aliyuncsMoniter" source="aliyuncs.moniter"/>
 
     <springProfile name="local">
         <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -23,110 +17,14 @@
         </root>
     </springProfile>
 
-    <springProfile name="dev">
-        <!--定义一个名为 console 的appender，并将其关联到ch.qos.logback.core.ConsoleAppender-->
-        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-            <!-- 典型的日志pattern -->
-            <encoder>
-                <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符-->
-                <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
-                <!-- 此处设置字符集 -->
-                <charset>UTF-8</charset>
-            </encoder>
-        </appender>
-
-        <!-- 综合时间与大小的滚动策略，先按天滚动，文件大于100mb时再按大小滚动 -->
-        <appender name="businessLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>${logPath}/business.log</file>
-            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>Debug</level>
-            </filter>
-            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${logPath}/business-%d{yyyy-MM-dd}_%i.log.zip</fileNamePattern>
-                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                    <maxFileSize>100MB</maxFileSize>
-                </timeBasedFileNamingAndTriggeringPolicy>
-                <!-- 保存前30天的日志文件 -->
-                <maxHistory>30</maxHistory>
-            </rollingPolicy>
-            <encoder>
-                <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
-                <!-- 此处设置字符集 -->
-                <charset>UTF-8</charset>
-            </encoder>
-        </appender>
-
-        <!-- 错误日志 -->
-        <appender name="errorlogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>${logPath}/error.log</file>
-            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>ERROR</level>
-            </filter>
-            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${logPath}/error-%d{yyyy-MM-dd}_%i.log.zip</fileNamePattern>
-                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                    <maxFileSize>100MB</maxFileSize>
-                </timeBasedFileNamingAndTriggeringPolicy>
-                <!-- 保存前30天的日志文件 -->
-                <maxHistory>30</maxHistory>
-            </rollingPolicy>
-            <encoder>
-                <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
-                <!-- 此处设置字符集 -->
-                <charset>UTF-8</charset>
-            </encoder>
-        </appender>
-
-        <!--阿里云日志上传appender-->
-        <appender name="aliyuncsAppender" class="com.aliyuncs.logback.appender.AliyuncsAppender">
-            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>ERROR</level>
-            </filter>
-            <enable>${aliyuncsMoniter}</enable>
-            <projectName>jxcpay</projectName>
-            <groupId>85170</groupId>
-            <aliyuncsAccessKeyId>LTAI8XyA1p5KCsAt</aliyuncsAccessKeyId>
-            <aliyuncsAccessKeySecret>mU0g9WSz5ymyZEGFwCWLMN2Mu1TRFG</aliyuncsAccessKeySecret>
-        </appender>
-
-
-        <!-- 需要打印SQL时，修改下面的INFO为DEBUG -->
-        <logger name="com.hbxhx" level="${logLevel}"/> <!-- 正式环境使用 INFO,测试时改为 DEBUG -->
-        <logger name="freemarker.cache" level="${logLevel}"/>
-        <logger name="org.apache.http.impl.conn" level="INFO"></logger>
-
-        <!-- business log 使用独立的appender，不继承Root的appender -->
-        <logger name="business" level="${logLevel}" additivity="false">
-            <appender-ref ref="businessLogFile"/>
-        </logger>
-        <logger name="myerror" level="ERROR" additivity="false">
-            <appender-ref ref="errorlogFile"/>
-        </logger>
-        <logger name="org.springframework" level="${logLevel}"/>
-        <logger name="org.mybatis" level="${logLevel}"/>
-        <logger name="org.apache.ibatis" level="${logLevel}"/>
-
-        <root level="${logLevel}">
-            <appender-ref ref="console"/>
-            <appender-ref ref="businessLogFile"/>
-            <appender-ref ref="errorlogFile"/>
-            <appender-ref ref="aliyuncsAppender"/>
-        </root>
-    </springProfile>
-
     <springProfile name="online">
-        <!--定义一个名为 console 的appender，并将其关联到ch.qos.logback.core.ConsoleAppender-->
         <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-            <!-- 典型的日志pattern -->
             <encoder>
-                <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符-->
                 <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
-                <!-- 此处设置字符集 -->
                 <charset>UTF-8</charset>
             </encoder>
         </appender>
 
-        <!-- 综合时间与大小的滚动策略，先按天滚动，文件大于100mb时再按大小滚动 -->
         <appender name="businessLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${logPath}/business.log</file>
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -137,17 +35,14 @@
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <maxFileSize>100MB</maxFileSize>
                 </timeBasedFileNamingAndTriggeringPolicy>
-                <!-- 保存前30天的日志文件 -->
                 <maxHistory>30</maxHistory>
             </rollingPolicy>
             <encoder>
                 <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
-                <!-- 此处设置字符集 -->
                 <charset>UTF-8</charset>
             </encoder>
         </appender>
 
-        <!-- 错误日志 -->
         <appender name="errorlogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${logPath}/error.log</file>
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -158,35 +53,18 @@
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <maxFileSize>100MB</maxFileSize>
                 </timeBasedFileNamingAndTriggeringPolicy>
-                <!-- 保存前30天的日志文件 -->
                 <maxHistory>30</maxHistory>
             </rollingPolicy>
             <encoder>
                 <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
-                <!-- 此处设置字符集 -->
                 <charset>UTF-8</charset>
             </encoder>
         </appender>
 
-        <!--阿里云日志上传appender-->
-        <appender name="aliyuncsAppender" class="com.aliyuncs.logback.appender.AliyuncsAppender">
-            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>ERROR</level>
-            </filter>
-            <enable>${aliyuncsMoniter}</enable>
-            <projectName>jxcpay</projectName>
-            <groupId>85170</groupId>
-            <aliyuncsAccessKeyId>LTAI8XyA1p5KCsAt</aliyuncsAccessKeyId>
-            <aliyuncsAccessKeySecret>mU0g9WSz5ymyZEGFwCWLMN2Mu1TRFG</aliyuncsAccessKeySecret>
-        </appender>
-
-
-        <!-- 需要打印SQL时，修改下面的INFO为DEBUG -->
-        <logger name="com.hbxhx" level="${logLevel}"/> <!-- 正式环境使用 INFO,测试时改为 DEBUG -->
+        <logger name="com.ziyoujiayuan" level="${logLevel}"/>
         <logger name="freemarker.cache" level="${logLevel}"/>
         <logger name="org.apache.http.impl.conn" level="INFO"></logger>
 
-        <!-- business log 使用独立的appender，不继承Root的appender -->
         <logger name="business" level="${logLevel}" additivity="false">
             <appender-ref ref="businessLogFile"/>
         </logger>
@@ -201,7 +79,6 @@
             <appender-ref ref="console"/>
             <appender-ref ref="businessLogFile"/>
             <appender-ref ref="errorlogFile"/>
-            <appender-ref ref="aliyuncsAppender"/>
         </root>
     </springProfile>
 </configuration>

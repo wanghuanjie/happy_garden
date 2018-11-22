@@ -16,11 +16,11 @@ public class RemindSaveParam extends DefBaseParam {
 
     private String type;
 
-    private String mode;
+    private Integer mode;
 
-    private Integer unit;
+    private Integer unit = 1;
 
-    private Date orginTime;
+    private Date originTime;
 
     private Date nextTime;
 

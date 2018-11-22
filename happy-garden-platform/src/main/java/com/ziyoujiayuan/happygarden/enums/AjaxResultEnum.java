@@ -9,7 +9,9 @@ public enum AjaxResultEnum {
     SUCCESS("100000", "success"),
     LOGIN_ERROR("100001", "login_error"),
     LOGOUT_ERROR("100002", "logout_error"),
-    ERROR("111111", "system_error");
+    NO_AUTH("111110", "no_auth"),
+    NO_LOGIN("111111", "no_login"),
+    ERROR("999999", "system_error");
 
     private String code;
     private String message;

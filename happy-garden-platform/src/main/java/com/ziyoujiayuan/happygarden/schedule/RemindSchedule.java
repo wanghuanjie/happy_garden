@@ -2,13 +2,11 @@ package com.ziyoujiayuan.happygarden.schedule;
 
 import com.hbxhx.runtime.notify.NotifyMeta;
 import com.hbxhx.runtime.notify.email.EmailNotifier;
-import com.hbxhx.utils.date.DateUtils;
 import com.ziyoujiayuan.happygarden.dao.auto.*;
 import com.ziyoujiayuan.happygarden.entity.auto.*;
 import com.ziyoujiayuan.happygarden.entity.def.RemindRecordDefPO;
 import com.ziyoujiayuan.happygarden.enums.RemindStatusEnum;
 import com.ziyoujiayuan.happygarden.enums.RemindTypeEnum;
-import com.ziyoujiayuan.happygarden.enums.RemindUnitEnum;
 import com.ziyoujiayuan.happygarden.param.RemindQueryParam;
 import com.ziyoujiayuan.happygarden.schedule.base.BaseSchedule;
 import com.ziyoujiayuan.happygarden.service.RemindService;
@@ -204,8 +202,9 @@ public class RemindSchedule extends BaseSchedule{
         Date currentTime = new Date();
         Date currentNextTime = remindRecordDefPO.getNextTime();
         if (currentTime.after(currentNextTime)) {
+            Integer mode = new Integer(remindRecordDefPO.getMode());
             Integer unit = new Integer(remindRecordDefPO.getUnit());
-            Date nextTime = remindService.doCalculateNext(currentNextTime, unit);
+            Date nextTime = remindService.doCalculateNext(currentNextTime, mode, unit);
 
             RemindRecordPO remindRecordPO = new RemindRecordPO();
             BeanUtils.copyProperties(remindRecordDefPO, remindRecordPO);

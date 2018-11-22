@@ -7,7 +7,7 @@
 #
 # Host: 39.106.1.123 (MySQL 5.5.56-MariaDB)
 # Database: happy_garden
-# Generation Time: 2018-11-05 12:00:51 +0000
+# Generation Time: 2018-11-22 13:06:28 +0000
 # ************************************************************
 
 
@@ -218,6 +218,34 @@ CREATE TABLE `t_flower` (
   `is_del` tinyint(4) DEFAULT '0' COMMENT '删除状态：0未删除,1已删除',
   PRIMARY KEY (`flower_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='植物';
+
+
+
+# Dump of table t_remind_record
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `t_remind_record`;
+
+CREATE TABLE `t_remind_record` (
+  `record_id` varchar(32) NOT NULL DEFAULT '' COMMENT '记录ID',
+  `type` varchar(32) DEFAULT NULL COMMENT '类型-施肥,撒药,浇水,喷水',
+  `mode` tinyint(4) DEFAULT '0' COMMENT '模式-0:at,1:年,2:月,3:日',
+  `unit` tinyint(4) DEFAULT '0' COMMENT '单位',
+  `origin_time` datetime DEFAULT NULL COMMENT '原始时间',
+  `next_time` datetime DEFAULT NULL COMMENT 'next',
+  `entity_id` varchar(32) DEFAULT NULL COMMENT '实体ID',
+  `remark` varchar(128) DEFAULT NULL COMMENT '备注',
+  `status` tinyint(4) DEFAULT '0' COMMENT '状态-0:初始化,1:启用,2:停用',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `regenerator` varchar(32) DEFAULT NULL COMMENT '修改人',
+  `create_time` datetime DEFAULT NULL COMMENT '新增时间',
+  `creator` varchar(32) DEFAULT NULL COMMENT '创建人',
+  `is_del` tinyint(4) DEFAULT '0' COMMENT '删除状态-0:未删除,1已删除',
+  `email_notify_cnt` tinyint(4) DEFAULT '0' COMMENT '邮件通知次数 默认0',
+  PRIMARY KEY (`record_id`),
+  UNIQUE KEY `index_unique_id` (`entity_id`,`creator`,`type`),
+  KEY `index_next_time` (`next_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='提醒记录';
 
 
 

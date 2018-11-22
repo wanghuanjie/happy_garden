@@ -49,6 +49,8 @@ public class FlowerManageController extends BaseController {
     @RequestMapping("/save.action")
     @ResponseBody
     public AjaxResult save(FlowerSaveParam flowerSaveParam) {
+        flowerSaveParam.setCreator(OnlineUser.current().getUserBasicInfo().getUserId());
+        flowerSaveParam.setRegenerator(OnlineUser.current().getUserBasicInfo().getUserId());
         return new AjaxResult(AjaxResultEnum.SUCCESS.getCode(), AjaxResultEnum.SUCCESS.getMessage(), true, flowerService.save(flowerSaveParam));
     }
 

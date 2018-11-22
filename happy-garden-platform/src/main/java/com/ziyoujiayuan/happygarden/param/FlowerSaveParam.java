@@ -18,5 +18,5 @@ public class FlowerSaveParam extends DefBaseParam {
 
     private String unit;
 
-    private Integer baseFlowerId;
+    private String baseFlowerId;
 }

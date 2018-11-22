@@ -285,62 +285,52 @@ public class RemindRecordPOExample {
             return (Criteria) this;
         }
 
-        public Criteria andModeEqualTo(String value) {
+        public Criteria andModeEqualTo(Byte value) {
             addCriterion("`mode` =", value, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeNotEqualTo(String value) {
+        public Criteria andModeNotEqualTo(Byte value) {
             addCriterion("`mode` <>", value, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeGreaterThan(String value) {
+        public Criteria andModeGreaterThan(Byte value) {
             addCriterion("`mode` >", value, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeGreaterThanOrEqualTo(String value) {
+        public Criteria andModeGreaterThanOrEqualTo(Byte value) {
             addCriterion("`mode` >=", value, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeLessThan(String value) {
+        public Criteria andModeLessThan(Byte value) {
             addCriterion("`mode` <", value, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeLessThanOrEqualTo(String value) {
+        public Criteria andModeLessThanOrEqualTo(Byte value) {
             addCriterion("`mode` <=", value, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeLike(String value) {
-            addCriterion("`mode` like", value, "mode");
-            return (Criteria) this;
-        }
-
-        public Criteria andModeNotLike(String value) {
-            addCriterion("`mode` not like", value, "mode");
-            return (Criteria) this;
-        }
-
-        public Criteria andModeIn(List<String> values) {
+        public Criteria andModeIn(List<Byte> values) {
             addCriterion("`mode` in", values, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeNotIn(List<String> values) {
+        public Criteria andModeNotIn(List<Byte> values) {
             addCriterion("`mode` not in", values, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeBetween(String value1, String value2) {
+        public Criteria andModeBetween(Byte value1, Byte value2) {
             addCriterion("`mode` between", value1, value2, "mode");
             return (Criteria) this;
         }
 
-        public Criteria andModeNotBetween(String value1, String value2) {
+        public Criteria andModeNotBetween(Byte value1, Byte value2) {
             addCriterion("`mode` not between", value1, value2, "mode");
             return (Criteria) this;
         }
@@ -405,63 +395,63 @@ public class RemindRecordPOExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeIsNull() {
-            addCriterion("orgin_time is null");
+        public Criteria andOriginTimeIsNull() {
+            addCriterion("origin_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeIsNotNull() {
-            addCriterion("orgin_time is not null");
+        public Criteria andOriginTimeIsNotNull() {
+            addCriterion("origin_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeEqualTo(Date value) {
-            addCriterion("orgin_time =", value, "orginTime");
+        public Criteria andOriginTimeEqualTo(Date value) {
+            addCriterion("origin_time =", value, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeNotEqualTo(Date value) {
-            addCriterion("orgin_time <>", value, "orginTime");
+        public Criteria andOriginTimeNotEqualTo(Date value) {
+            addCriterion("origin_time <>", value, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeGreaterThan(Date value) {
-            addCriterion("orgin_time >", value, "orginTime");
+        public Criteria andOriginTimeGreaterThan(Date value) {
+            addCriterion("origin_time >", value, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("orgin_time >=", value, "orginTime");
+        public Criteria andOriginTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("origin_time >=", value, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeLessThan(Date value) {
-            addCriterion("orgin_time <", value, "orginTime");
+        public Criteria andOriginTimeLessThan(Date value) {
+            addCriterion("origin_time <", value, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeLessThanOrEqualTo(Date value) {
-            addCriterion("orgin_time <=", value, "orginTime");
+        public Criteria andOriginTimeLessThanOrEqualTo(Date value) {
+            addCriterion("origin_time <=", value, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeIn(List<Date> values) {
-            addCriterion("orgin_time in", values, "orginTime");
+        public Criteria andOriginTimeIn(List<Date> values) {
+            addCriterion("origin_time in", values, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeNotIn(List<Date> values) {
-            addCriterion("orgin_time not in", values, "orginTime");
+        public Criteria andOriginTimeNotIn(List<Date> values) {
+            addCriterion("origin_time not in", values, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeBetween(Date value1, Date value2) {
-            addCriterion("orgin_time between", value1, value2, "orginTime");
+        public Criteria andOriginTimeBetween(Date value1, Date value2) {
+            addCriterion("origin_time between", value1, value2, "originTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrginTimeNotBetween(Date value1, Date value2) {
-            addCriterion("orgin_time not between", value1, value2, "orginTime");
+        public Criteria andOriginTimeNotBetween(Date value1, Date value2) {
+            addCriterion("origin_time not between", value1, value2, "originTime");
             return (Criteria) this;
         }
 

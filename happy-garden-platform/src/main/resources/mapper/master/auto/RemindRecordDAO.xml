@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO">
     <id column="record_id" jdbcType="VARCHAR" property="recordId" />
     <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="mode" jdbcType="VARCHAR" property="mode" />
+    <result column="mode" jdbcType="TINYINT" property="mode" />
     <result column="unit" jdbcType="TINYINT" property="unit" />
-    <result column="orgin_time" jdbcType="TIMESTAMP" property="orginTime" />
+    <result column="origin_time" jdbcType="TIMESTAMP" property="originTime" />
     <result column="next_time" jdbcType="TIMESTAMP" property="nextTime" />
     <result column="entity_id" jdbcType="VARCHAR" property="entityId" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
@@ -77,7 +77,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    record_id, `type`, `mode`, unit, orgin_time, next_time, entity_id, remark, `status`, 
+    record_id, `type`, `mode`, unit, origin_time, next_time, entity_id, remark, `status`, 
     update_time, regenerator, create_time, creator, is_del, email_notify_cnt
   </sql>
   <select id="selectByExample" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPOExample" resultMap="BaseResultMap">
@@ -123,13 +123,13 @@
   </delete>
   <insert id="insert" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO">
     insert into t_remind_record (record_id, `type`, `mode`, 
-      unit, orgin_time, next_time, 
+      unit, origin_time, next_time, 
       entity_id, remark, `status`, 
       update_time, regenerator, create_time, 
       creator, is_del, email_notify_cnt
       )
-    values (#{recordId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{mode,jdbcType=VARCHAR}, 
-      #{unit,jdbcType=TINYINT}, #{orginTime,jdbcType=TIMESTAMP}, #{nextTime,jdbcType=TIMESTAMP}, 
+    values (#{recordId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{mode,jdbcType=TINYINT}, 
+      #{unit,jdbcType=TINYINT}, #{originTime,jdbcType=TIMESTAMP}, #{nextTime,jdbcType=TIMESTAMP}, 
       #{entityId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{regenerator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{creator,jdbcType=VARCHAR}, #{isDel,jdbcType=TINYINT}, #{emailNotifyCnt,jdbcType=TINYINT}
@@ -150,8 +150,8 @@
       <if test="unit != null">
         unit,
       </if>
-      <if test="orginTime != null">
-        orgin_time,
+      <if test="originTime != null">
+        origin_time,
       </if>
       <if test="nextTime != null">
         next_time,
@@ -192,13 +192,13 @@
         #{type,jdbcType=VARCHAR},
       </if>
       <if test="mode != null">
-        #{mode,jdbcType=VARCHAR},
+        #{mode,jdbcType=TINYINT},
       </if>
       <if test="unit != null">
         #{unit,jdbcType=TINYINT},
       </if>
-      <if test="orginTime != null">
-        #{orginTime,jdbcType=TIMESTAMP},
+      <if test="originTime != null">
+        #{originTime,jdbcType=TIMESTAMP},
       </if>
       <if test="nextTime != null">
         #{nextTime,jdbcType=TIMESTAMP},
@@ -248,13 +248,13 @@
         `type` = #{record.type,jdbcType=VARCHAR},
       </if>
       <if test="record.mode != null">
-        `mode` = #{record.mode,jdbcType=VARCHAR},
+        `mode` = #{record.mode,jdbcType=TINYINT},
       </if>
       <if test="record.unit != null">
         unit = #{record.unit,jdbcType=TINYINT},
       </if>
-      <if test="record.orginTime != null">
-        orgin_time = #{record.orginTime,jdbcType=TIMESTAMP},
+      <if test="record.originTime != null">
+        origin_time = #{record.originTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.nextTime != null">
         next_time = #{record.nextTime,jdbcType=TIMESTAMP},
@@ -295,9 +295,9 @@
     update t_remind_record
     set record_id = #{record.recordId,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=VARCHAR},
-      `mode` = #{record.mode,jdbcType=VARCHAR},
+      `mode` = #{record.mode,jdbcType=TINYINT},
       unit = #{record.unit,jdbcType=TINYINT},
-      orgin_time = #{record.orginTime,jdbcType=TIMESTAMP},
+      origin_time = #{record.originTime,jdbcType=TIMESTAMP},
       next_time = #{record.nextTime,jdbcType=TIMESTAMP},
       entity_id = #{record.entityId,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
@@ -319,13 +319,13 @@
         `type` = #{type,jdbcType=VARCHAR},
       </if>
       <if test="mode != null">
-        `mode` = #{mode,jdbcType=VARCHAR},
+        `mode` = #{mode,jdbcType=TINYINT},
       </if>
       <if test="unit != null">
         unit = #{unit,jdbcType=TINYINT},
       </if>
-      <if test="orginTime != null">
-        orgin_time = #{orginTime,jdbcType=TIMESTAMP},
+      <if test="originTime != null">
+        origin_time = #{originTime,jdbcType=TIMESTAMP},
       </if>
       <if test="nextTime != null">
         next_time = #{nextTime,jdbcType=TIMESTAMP},
@@ -363,9 +363,9 @@
   <update id="updateByPrimaryKey" parameterType="com.ziyoujiayuan.happygarden.entity.auto.RemindRecordPO">
     update t_remind_record
     set `type` = #{type,jdbcType=VARCHAR},
-      `mode` = #{mode,jdbcType=VARCHAR},
+      `mode` = #{mode,jdbcType=TINYINT},
       unit = #{unit,jdbcType=TINYINT},
-      orgin_time = #{orginTime,jdbcType=TIMESTAMP},
+      origin_time = #{originTime,jdbcType=TIMESTAMP},
       next_time = #{nextTime,jdbcType=TIMESTAMP},
       entity_id = #{entityId,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},

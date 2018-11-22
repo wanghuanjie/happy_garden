@@ -5,6 +5,7 @@ import com.hbxhx.runtime.web.BaseController;
 import com.hbxhx.utils.encrypt.EncryptUtils;
 import com.ziyoujiayuan.happygarden.entity.auto.AccountPO;
 import com.ziyoujiayuan.happygarden.enums.AjaxResultEnum;
+import com.ziyoujiayuan.happygarden.result.LoginAjaxResult;
 import com.ziyoujiayuan.happygarden.service.AccountService;
 import com.ziyoujiayuan.happygarden.web.sso.service.AccountSsoService;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
@@ -40,20 +41,21 @@ public class LoginController extends BaseController {
      *
      * @param accountName
      * @param password
+     * @param termType
      * @return
      */
     @RequestMapping("/login.action")
     @ResponseBody
-    public AjaxResult login(String accountName, String password) {
+    public AjaxResult login(String accountName, String password, String termType) {
 
-        String result ;
+        LoginAjaxResult result ;
         password = EncryptUtils.md5_sha(password);
         AccountPO accountPO = accountService.getDetails(accountName);
         try {
             if (!password.equals(accountPO.getPassword())) {
                 throw new InternalException("accountName or password is error");
             }
-            result = accountSsoService.login(accountPO.getAccountId(), accountPO.getAccountName(), accountPO.getMobile(), accountPO.getEmail());
+            result = accountSsoService.login(accountPO.getAccountId(), accountPO.getAccountName(), accountPO.getMobile(), accountPO.getEmail(), termType);
 
         } catch (Exception e) {
             log.info("login happen system error", e);

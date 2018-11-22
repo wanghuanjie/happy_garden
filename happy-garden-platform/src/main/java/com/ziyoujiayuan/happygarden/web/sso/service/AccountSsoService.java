@@ -2,9 +2,12 @@ package com.ziyoujiayuan.happygarden.web.sso.service;
 
 import com.hbxhx.runtime.redis.template.HbhxhRedisTemplate;
 import com.hbxhx.utils.uuid.UuidUtils;
+import com.ziyoujiayuan.happygarden.enums.LoginTermTypeEnum;
+import com.ziyoujiayuan.happygarden.result.LoginAjaxResult;
 import com.ziyoujiayuan.happygarden.web.sso.OnlineUser;
 import com.ziyoujiayuan.happygarden.web.sso.SessionConfigure;
 import com.ziyoujiayuan.happygarden.web.sso.pojo.UserBasicInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,6 +18,7 @@ import java.util.Set;
  * @author wanghjbuf
  * @date 2018/11/15
  */
+@Slf4j
 @Service
 public class AccountSsoService {
 
@@ -30,6 +34,8 @@ public class AccountSsoService {
      * @return
      */
     public UserBasicInfo getUserBasicInfo(String token)  {
+        log.info("getUserBasicInfo-token:{};", token);
+
         UserBasicInfo userBasicInfo = null;
         if (hbhxhRedisTemplate.exists(token)) {
             hbhxhRedisTemplate.expire(token, sessionConfigure.getSessionExpiration());
@@ -47,9 +53,13 @@ public class AccountSsoService {
      * @param accountName
      * @param mobile
      * @param email
+     * @param termType
      * @return
      */
-    public String login(String accountId, String accountName, String mobile, String email) {
+    public LoginAjaxResult login(String accountId, String accountName, String mobile, String email, String termType) {
+        log.info("login-accountId:{},accountName:{},mobile:{},email:{},termType:{};", accountId, accountName, mobile, email, termType);
+
+        LoginAjaxResult loginAjaxResult = new LoginAjaxResult();
 
         UserBasicInfo userBasicInfo = new UserBasicInfo();
         userBasicInfo.setAccount(mobile);
@@ -63,17 +73,29 @@ public class AccountSsoService {
         userBasicInfo.setToken(token.toString());
         userBasicInfo.setSessionId(sessionId.toString());
 
+        switch (LoginTermTypeEnum.getEnumByType(termType)) {
+            case MINI:
+                //TODO mini_program_match
+                break;
+            default:
+                log.info("term-type no match");
+        }
+
         if (sessionConfigure.isOpen()) {
             StringBuffer sessionPattern = new StringBuffer(sessionConfigure.getSessionPrefix());
             sessionPattern.append(accountId).append(":").append("*");
             Set<String> keys = hbhxhRedisTemplate.keys(sessionPattern.toString());
+            log.info("hbxhx-redis-template:keys{};", keys.size());
             keys.forEach(key -> {
                 hbhxhRedisTemplate.delKey(key);
             });
         }
-
         hbhxhRedisTemplate.set(sessionId.toString(), userBasicInfo, sessionConfigure.getSessionExpiration());
-        return sessionId.toString();
+
+        loginAjaxResult.setToken(sessionId.toString());
+        loginAjaxResult.setTokenExpireTime(sessionConfigure.getSessionExpiration());
+
+        return loginAjaxResult;
     }
 
     /**

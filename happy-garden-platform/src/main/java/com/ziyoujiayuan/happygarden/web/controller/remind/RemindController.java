@@ -41,7 +41,7 @@ public class RemindController extends BaseController {
     }
 
     /**
-     * 施肥提醒保存
+     * 提醒保存
      *
      * @return
      */
@@ -54,7 +54,7 @@ public class RemindController extends BaseController {
     }
 
     /**
-     * 施肥提醒删除
+     * 提醒删除
      *
      * @param recordId
      * @return

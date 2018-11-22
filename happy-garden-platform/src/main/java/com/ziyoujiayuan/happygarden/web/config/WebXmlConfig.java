@@ -24,7 +24,7 @@ public class WebXmlConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        String[] excludePatterns = {"/login.action"};
+        String[] excludePatterns = {"/login.action", "/hall/**", "/docker/*", "/monitor/*", "/404", "/403", "/500"};
         registry.addInterceptor(new AuthorityHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns(excludePatterns);
         super.addInterceptors(registry);
     }

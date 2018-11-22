@@ -11,6 +11,7 @@ import com.ziyoujiayuan.happygarden.entity.def.SpreadDrugRecordDefPO;
 import com.ziyoujiayuan.happygarden.param.cultivate.SpreadDrugQueryParam;
 import com.ziyoujiayuan.happygarden.param.cultivate.SpreadDrugSaveParam;
 import com.ziyoujiayuan.happygarden.service.SpreadDrugManageService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +45,7 @@ public class SpreadDrugManageServiceImpl implements SpreadDrugManageService{
     public String save(SpreadDrugSaveParam spreadDrugSaveParam) {
         String recordId = UuidUtils.getUUID();
         SpreadDrugRecordPO spreadDrugRecordPO = new SpreadDrugRecordPO();
+        BeanUtils.copyProperties(spreadDrugSaveParam, spreadDrugRecordPO);
 
         spreadDrugRecordPO.setRecordId(recordId);
         spreadDrugRecordPO.setCreateTime(new Date());

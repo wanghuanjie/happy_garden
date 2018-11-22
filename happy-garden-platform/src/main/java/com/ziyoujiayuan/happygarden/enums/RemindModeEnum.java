@@ -6,22 +6,24 @@ package com.ziyoujiayuan.happygarden.enums;
  */
 public enum RemindModeEnum {
 
-    AT("at", "at"),
-    CRON("cron", "年");
+    AT(0, "at"),
+    YEAR(1, "年"),
+    MONTH(2, "月"),
+    DAY(3, "日");
 
-    private String code;
+    private Integer code;
     private String remark;
 
-    RemindModeEnum(String code, String remark) {
+    RemindModeEnum(Integer code, String remark) {
        this.code = code;
        this.remark = remark;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -31,5 +33,14 @@ public enum RemindModeEnum {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public static RemindModeEnum getEnumByCode(Integer code) {
+        for (RemindModeEnum item : values()) {
+            if (item.getCode().intValue() == code.intValue()) {
+                return item;
+            }
+        }
+        return null;
     }
 }

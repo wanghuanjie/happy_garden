@@ -42,8 +42,9 @@ public interface RemindService {
      * 计算next
      *
      * @param originTime
+     * @param mode
      * @param unit
      * @return
      */
-    Date doCalculateNext(Date originTime, Integer unit);
+     Date doCalculateNext(Date originTime, Integer mode, Integer unit);
 }
